@@ -758,7 +758,8 @@ server.use(router);
 /* =========================
    Start the server
 ========================= */
-PORT = 8080;
+// PORT = 8080;
+const PORT = process.env.PORT || 8080;
 
 server.listen(PORT, () => {
   console.log("✔ OND Money mock running on http://localhost:8080");
