@@ -1,0 +1,106 @@
+{
+  "apiKeys": [
+    {
+      "id": 1,
+      "service": "gateway",
+      "plain": "gateway"
+    },
+    {
+      "id": 2,
+      "service": "bank",
+      "plain": "bank"
+    },
+    {
+      "id": 3,
+      "service": "transfertsolde",
+      "plain": "transfertsolde"
+    }
+  ],
+  "banks": [
+    {
+      "id": 1,
+      "bankId": "BANK-001",
+      "name": "OND Bank",
+      "currency": "XOF",
+      "solde": "10000000000",
+      "status": "ACTIVE",
+      "createdAt": "2025-12-01T08:00:00.000Z",
+      "updatedAt": "2025-12-01T08:00:00.000Z"
+    }
+  ],
+  "wallets": [
+    {
+      "id": 1,
+      "walletId": "WALLET-001",
+      "phoneNumber": "+221771234567",
+      "ownerId": "USER-001",
+      "ownerName": "Mamadou Diallo",
+      "balance": 1500,
+      "status": "ACTIVE",
+      "createdAt": "2025-12-14T10:30:45.123Z",
+      "updatedAt": "2025-12-14T10:37:45.123Z"
+    },
+    {
+      "id": 2,
+      "walletId": "WALLET-002",
+      "phoneNumber": "+221761112233",
+      "ownerId": "USER-002",
+      "ownerName": "Awa Ndiaye",
+      "balance": 2500,
+      "status": "ACTIVE",
+      "createdAt": "2025-12-14T09:10:00.000Z",
+      "updatedAt": "2025-12-14T10:37:45.123Z"
+    }
+  ],
+
+  "transactions": [
+    {
+      "id": 1,
+      "transactionId": "TXN-001",
+      "walletId": "WALLET-001",
+      "type": "CREDIT",
+      "status": "SUCCESS",
+      "amount": 5000,
+      "balanceBefore": 0,
+      "balanceAfter": 5000,
+      "reference": "CREDIT-REF-001",
+      "timestamp": "2025-12-14T10:35:22.456Z"
+    },
+    {
+      "id": 2,
+      "transactionId": "TXN-002",
+      "walletId": "WALLET-001",
+      "type": "DEBIT",
+      "status": "SUCCESS",
+      "amount": 3500,
+      "balanceBefore": 5000,
+      "balanceAfter": 1500,
+      "reference": "DEBIT-REF-001",
+      "timestamp": "2025-12-14T10:36:10.789Z"
+    }
+  ],
+
+  "events": [
+    {
+      "id": 1,
+      "topic": "wallet.created",
+      "payload": {
+        "walletId": "WALLET-001",
+        "ownerName": "Mamadou Diallo",
+        "initialBalance": 0,
+        "status": "ACTIVE"
+      }
+    },
+    {
+      "id": 2,
+      "topic": "wallet.transfer.completed",
+      "payload": {
+        "transactionId": "TRF-001",
+        "sourceWalletId": "WALLET-001",
+        "destinationWalletId": "WALLET-002",
+        "amount": 1000,
+        "status": "SUCCESS"
+      }
+    }
+  ]
+}
