@@ -102,5 +102,20 @@
         "status": "SUCCESS"
       }
     }
-  ]
+  ],
+  "airtimeOperators": [
+    {
+      "id": "ORANGE",
+      "name": "Orange",
+      "country": "SN",
+      "currency": "XOF"
+    },
+    {
+      "id": "FREE",
+      "name": "Free",
+      "country": "SN",
+      "currency": "XOF"
+    }
+  ],
+  "airtimeTransactions": []
 }

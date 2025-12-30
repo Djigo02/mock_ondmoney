@@ -747,6 +747,75 @@ server.post("/wallet/transfer", (req, res) => {
   res.json(response);
 });
 
+// ===============================
+// AIRTIME SERVICE
+// ===============================
+
+// Liste des opérateurs
+server.get("/airtime/operators", (req, res) => {
+  const operators = router.db.get("airtimeOperators").value();
+  res.status(200).json(operators);
+});
+
+// Achat de crédit téléphonique
+server.post("/airtime/purchase", (req, res) => {
+  const { walletId, phoneNumber, operatorId, amount, reference } = req.body;
+
+  if (!walletId || !phoneNumber || !operatorId || !amount) {
+    return res.status(400).json({
+      code: "INVALID_REQUEST",
+      message: "Informations manquantes pour l'achat de airtime",
+    });
+  }
+
+  const wallet = router.db.get("wallets").find({ id: walletId }).value();
+
+  if (!wallet) {
+    return res.status(404).json({
+      code: "WALLET_NOT_FOUND",
+      message: "Wallet introuvable",
+    });
+  }
+
+  if (wallet.balance < amount) {
+    return res.status(400).json({
+      code: "INSUFFICIENT_BALANCE",
+      message: "Solde insuffisant pour effectuer l'achat",
+    });
+  }
+
+  // Débit du wallet
+  wallet.balance -= amount;
+
+  router.db.get("wallets").find({ id: walletId }).assign(wallet).write();
+
+  // Création de la transaction airtime
+  const airtimeTransaction = {
+    id: `AIR-${Date.now()}`,
+    walletId,
+    phoneNumber,
+    operatorId,
+    amount,
+    reference: reference || `AIRTIME-${Date.now()}`,
+    status: "SUCCESS",
+    createdAt: new Date().toISOString(),
+  };
+
+  router.db.get("airtimeTransactions").push(airtimeTransaction).write();
+
+  res.status(201).json({
+    message: "Achat de crédit téléphonique effectué avec succès",
+    transaction: airtimeTransaction,
+    walletBalance: wallet.balance,
+  });
+});
+
+// Historique des achats airtime
+server.get("/airtime/transactions", (req, res) => {
+  const transactions = router.db.get("airtimeTransactions").value();
+  res.status(200).json(transactions);
+});
+
 /* =========================
    Expose the default json-server router
    for raw CRUD on collections if needed:
