@@ -768,7 +768,8 @@ server.post("/airtime/purchase", (req, res) => {
     });
   }
 
-  const wallet = router.db.get("wallets").find({ id: walletId }).value();
+  // const wallet = router.db.get("wallets").find({ id: walletId }).value();
+  const wallet = findWalletByWalletId(walletId);
 
   if (!wallet) {
     return res.status(404).json({

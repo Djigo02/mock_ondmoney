@@ -35,7 +35,7 @@
       "phoneNumber": "+221771234567",
       "ownerId": "USER-001",
       "ownerName": "Mamadou Diallo",
-      "balance": 1500,
+      "balance": 500,
       "status": "ACTIVE",
       "createdAt": "2025-12-14T10:30:45.123Z",
       "updatedAt": "2025-12-14T10:37:45.123Z"
@@ -52,7 +52,6 @@
       "updatedAt": "2025-12-14T10:37:45.123Z"
     }
   ],
-
   "transactions": [
     {
       "id": 1,
@@ -79,7 +78,6 @@
       "timestamp": "2025-12-14T10:36:10.789Z"
     }
   ],
-
   "events": [
     {
       "id": 1,
@@ -117,5 +115,16 @@
       "currency": "XOF"
     }
   ],
-  "airtimeTransactions": []
+  "airtimeTransactions": [
+    {
+      "id": "AIR-1767141118310",
+      "walletId": "WALLET-001",
+      "phoneNumber": "771234567",
+      "operatorId": "ORANGE",
+      "amount": 1000,
+      "reference": "AIRTIME-0001",
+      "status": "SUCCESS",
+      "createdAt": "2025-12-31T00:31:58.310Z"
+    }
+  ]
 }
